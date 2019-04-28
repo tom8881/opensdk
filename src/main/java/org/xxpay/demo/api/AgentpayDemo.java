@@ -20,8 +20,8 @@ public class AgentpayDemo extends BaseSdk {
     static final String notifyUrl = "http://localhost:8081/"; // 本地环境测试,可到ngrok.cc网站注册
 
     public static void main(String[] args) {
-        applyAgentpayTest();
-        quryAgentpayTest("", "AP1556477060400");
+        //applyAgentpayTest();
+        //quryAgentpayTest("", "AP1556477060400");
         quryBalanceTest();
     }
 
@@ -105,7 +105,7 @@ public class AgentpayDemo extends BaseSdk {
         paramMap.put("sign", reqSign);                              // 签名
         String reqData = genUrlParams(paramMap);
         System.out.println("请求支付网关代付查询接口,请求数据:" + reqData);
-        String url = payUrl + "/agentpay/query_order?";
+        String url = payUrl + "/agentPay/queryOrder?";
         String result = call4Post(url + reqData);
         System.out.println("请求支付网关代付查询接口,响应数据:" + result);
         Map retMap = JSON.parseObject(result);
@@ -136,7 +136,7 @@ public class AgentpayDemo extends BaseSdk {
         paramMap.put("sign", reqSign);                              // 签名
         String reqData = genUrlParams(paramMap);
         System.out.println("请求支付网关代付余额查询接口,请求数据:" + reqData);
-        String url = payUrl + "/agentpay/query_balance?";
+        String url = payUrl + "/agentPay/queryBalance?";
         String result = call4Post(url + reqData);
         System.out.println("请求支付网关代付余额查询接口,响应数据:" + result);
         Map retMap = JSON.parseObject(result);

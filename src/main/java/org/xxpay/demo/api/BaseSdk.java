@@ -39,7 +39,9 @@ public class BaseSdk {
     }
 
     public static String genUrlParams(Map<String, Object> paraMap) {
-        if(paraMap == null || paraMap.isEmpty()) return "";
+        if(paraMap == null || paraMap.isEmpty()) {
+            return "";
+        }
         StringBuffer urlParam = new StringBuffer();
         Set<String> keySet = paraMap.keySet();
         int i = 0;
@@ -50,7 +52,9 @@ public class BaseSdk {
             }else {
                 urlParam.append(paraMap.get(key));
             }
-            if(++i == keySet.size()) break;
+            if(++i == keySet.size()) {
+                break;
+            }
             urlParam.append("&");
         }
         return urlParam.toString();

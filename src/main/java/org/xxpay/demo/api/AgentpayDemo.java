@@ -16,7 +16,7 @@ public class AgentpayDemo extends BaseSdk {
     // 私钥
     static final String key = "D4SZ8TQK1Z8UPYMOLSKQQPMWYKVXW8IAHBMNJEFXJLCYPF7AWKCTKN1SXWS82ZNPMOBRFEGCK5TOGOQKPC59LP0FHIP6TU5GZ5TZXHHJ7YDGHSWP2URHZX1YUKPUMPAM";
 
-    static final String payUrl = "http://47.244.105.215:3020/api";
+    static final String payUrl = "https://api.madaofu.com/api";
     static final String notifyUrl = "http://localhost:8081/"; // 本地环境测试,可到ngrok.cc网站注册
 
     public static void main(String[] args) {

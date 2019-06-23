@@ -14,11 +14,9 @@ import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 
 /**
- * @Description:
- * @author dingzhiwei jmdhappy@126.com
- * @date 2017-07-05
+ * @author tom.yuang
  * @version V1.0
- * @Copyright: www.xxpay.org
+ * @date 2019/06/23
  */
 public class HttpClient {
 

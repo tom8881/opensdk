@@ -8,6 +8,9 @@ import java.util.Map;
 
 /**
  * 生成收银台URl
+ *
+ * @author tom.yuang
+ * @date 2019/06/23
  */
 public class CashierDemo extends BaseSdk {
 
@@ -45,18 +48,18 @@ public class CashierDemo extends BaseSdk {
         String result = call4Post(url + reqData);
         System.out.println("请求支付中心下单接口,响应数据:" + result);
         Map retMap = JSON.parseObject(result);
-        if("SUCCESS".equals(retMap.get("retCode"))) {
+        if ("SUCCESS".equals(retMap.get("retCode"))) {
             // 验签
             String checkSign = PayDigestUtil.getSign(retMap, key, "sign");
             String retSign = (String) retMap.get("sign");
-            if(checkSign.equals(retSign)) {
+            if (checkSign.equals(retSign)) {
                 System.out.println("=========支付中心下单验签成功=========");
-            }else {
+            } else {
                 System.err.println("=========支付中心下单验签失败=========");
                 return null;
             }
         }
-        return retMap.get("payOrderId")+"";
+        return retMap.get("payOrderId") + "";
     }
 
 }

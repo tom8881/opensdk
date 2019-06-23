@@ -24,9 +24,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author: dingzhiwei
- * @date: 2018/6/7
- * @description:
+ * @author tom.yuang
+ * @date 2019/06/23
  */
 @Controller
 @RequestMapping("/demo")
@@ -45,6 +44,7 @@ public class DemoController {
 
     /**
      * 创建支付订单
+     *
      * @param request
      * @return
      */
@@ -61,21 +61,21 @@ public class DemoController {
         String extra = request.getParameter("extra");
         JSONObject retObj = createPayOrder(type, this.mchId, this.privateKey, this.appId, productId, amount, subject, body, notifyUrl, extra);
         JSONObject object = new JSONObject();
-        if(retObj == null) {
+        if (retObj == null) {
             object.put("code", 1001);
             object.put("msg", "创建订单失败,没有返回数据");
             return object;
         }
-        if("SUCCESS".equals(retObj.get("retCode"))) {
+        if ("SUCCESS".equals(retObj.get("retCode"))) {
             // 验签
             String checkSign = PayDigestUtil.getSign(retObj, privateKey, "sign");
             String retSign = (String) retObj.get("sign");
-            if(checkSign.equals(retSign)) {
+            if (checkSign.equals(retSign)) {
                 object.put("code", 0);
                 object.put("msg", "下单成功");
                 object.put("data", retObj);
                 return object;
-            }else {
+            } else {
                 object.put("code", 1002);
                 object.put("msg", "创建订单失败,验证支付中心返回签名失败");
                 return object;
@@ -88,6 +88,7 @@ public class DemoController {
 
     /**
      * 接收支付中心通知
+     *
      * @param request
      * @param response
      * @throws Exception
@@ -96,7 +97,7 @@ public class DemoController {
     @ResponseBody
     public String notify(HttpServletRequest request, HttpServletResponse response) throws Exception {
         _log.info("====== 开始处理支付中心通知 ======");
-        Map<String,Object> paramMap = request2payResponseMap(request, new String[]{
+        Map<String, Object> paramMap = request2payResponseMap(request, new String[]{
                 "payOrderId", "mchId", "appId", "productId", "mchOrderNo", "amount", "status",
                 "channelOrderNo", "channelAttach", "param1", "income",
                 "param2", "paySuccTime", "backType", "sign"
@@ -114,7 +115,7 @@ public class DemoController {
             // 业务处理代码,根据订单号,得到业务系统交易数据.
             // 对交易数据进行处理,如修改状态,发货等操作
             resStr = "success";
-        }catch (Exception e) {
+        } catch (Exception e) {
             resStr = "fail";
             _log.error("处理通知失败", e);
         }
@@ -125,6 +126,7 @@ public class DemoController {
 
     /**
      * 调用XxPay支付系统,创建支付订单
+     *
      * @param type
      * @param mchId
      * @param key
@@ -161,11 +163,11 @@ public class DemoController {
         String reqData = "params=" + paramMap.toJSONString();
         _log.info("[xxpay] req:{}", reqData);
         String url;
-        if("recharge".equalsIgnoreCase(type)) {
+        if ("recharge".equalsIgnoreCase(type)) {
             url = this.payUrl + "/pay/create_order?";
-        }else if("cashier".equalsIgnoreCase(type)) {
+        } else if ("cashier".equalsIgnoreCase(type)) {
             url = this.payUrl + "/cashier/pc_build?";
-        }else {
+        } else {
             return null;
         }
         // 发起Http请求下单
@@ -177,7 +179,7 @@ public class DemoController {
 
     public Map<String, Object> request2payResponseMap(HttpServletRequest request, String[] paramArray) {
         Map<String, Object> responseMap = new HashMap<>();
-        for (int i = 0;i < paramArray.length; i++) {
+        for (int i = 0; i < paramArray.length; i++) {
             String key = paramArray[i];
             String v = request.getParameter(key);
             if (v != null) {
@@ -187,7 +189,7 @@ public class DemoController {
         return responseMap;
     }
 
-    public boolean verifyPayResponse(Map<String,Object> map) {
+    public boolean verifyPayResponse(Map<String, Object> map) {
         String mchId = (String) map.get("mchId");
         String payOrderId = (String) map.get("payOrderId");
         String amount = (String) map.get("amount");
@@ -230,17 +232,18 @@ public class DemoController {
 
     /**
      * 发起HTTP/HTTPS请求(method=POST)
+     *
      * @param url
      * @return
      */
     public static String call4Post(String url) {
         try {
             URL url1 = new URL(url);
-            if("https".equals(url1.getProtocol())) {
+            if ("https".equals(url1.getProtocol())) {
                 return HttpClient.callHttpsPost(url);
-            }else if("http".equals(url1.getProtocol())) {
+            } else if ("http".equals(url1.getProtocol())) {
                 return HttpClient.callHttpPost(url);
-            }else {
+            } else {
                 return "";
             }
         } catch (MalformedURLException e) {

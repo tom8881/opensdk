@@ -8,6 +8,9 @@ import java.util.Map;
 
 /**
  * 代付demo
+ *
+ * @author tom.yuang
+ * @date 2019/06/23
  */
 public class AgentpayDemo extends BaseSdk {
 

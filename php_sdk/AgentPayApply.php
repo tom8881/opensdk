@@ -43,3 +43,8 @@ $array = array(
 
 $sign = PayCommon::createSign($array, $merchantKey);
 $array['sign'] = $sign;
+$url = $payUrl . "/agentPay/apply";
+$HttpClient = new HttpClient();
+$result = $HttpClient->post($url, $array, 10);
+var_dump(json_decode($result));
+

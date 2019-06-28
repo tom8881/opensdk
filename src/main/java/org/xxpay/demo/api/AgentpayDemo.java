@@ -14,17 +14,28 @@ import java.util.Map;
  */
 public class AgentpayDemo extends BaseSdk {
 
-    // 商户ID
-    static final String mchId = "20000000";//20001223,20001245
-    // 私钥
-    static final String key = "D4SZ8TQK1Z8UPYMOLSKQQPMWYKVXW8IAHBMNJEFXJLCYPF7AWKCTKN1SXWS82ZNPMOBRFEGCK5TOGOQKPC59LP0FHIP6TU5GZ5TZXHHJ7YDGHSWP2URHZX1YUKPUMPAM";
+    /**
+     * 商户ID
+     */
+    static final String mchId = "200000043";
+    /**
+     * 私钥
+     */
+    static final String key = "KMAX5E54DCOASXSQTP5VYGKNB4TENCNQW5D6MX2OPUDY3XNLVLWI8BENOIK0QVMTFSS5PMH6NXUFG5EK3RJRBRO0T7XWOBC48I1KLQWZGO1PJJWFMBMW1QHUTO8CXGLY";
 
+    /**
+     * 支付路径
+     */
     static final String payUrl = "https://api.madaofu.com/api";
-    static final String notifyUrl = "http://localhost:8081/"; // 本地环境测试,可到ngrok.cc网站注册
+
+    /**
+     * 本地环境测试,可到ngrok.cc网站注册
+     */
+    static final String notifyUrl = "http://localhost:8082/callback";
 
     public static void main(String[] args) {
         //applyAgentpayTest();
-        //quryAgentpayTest("", "AP1556477060400");
+        //quryAgentpayTest("", "AP1561746502431");
         quryBalanceTest();
     }
 

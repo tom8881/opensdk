@@ -12,7 +12,7 @@ $array = array(
     // 商户代付单号
     "mchOrderNo" => "AP" . round(microtime(true) * 10000),
     // 代付金额,单位分
-    "amount" => 119,
+    "amount" => 219,
     // 账户属性:0-对私,1-对公,默认对私
     "accountAttr" => 0,
     // 收款人账户名

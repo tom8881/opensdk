@@ -10,9 +10,9 @@ $array = array(
     //商户id
     "mchId" => $merchantId,
     // 商户代付单号
-    "mchOrderNo" => "AP15612999699810",
+    "mchOrderNo" => "AP15614894869381",
     // 代付订单号
-    "agentpayOrderId" => "G01201906231026130130004",
+    "agentpayOrderId" => "G01201906260304486540000",
     // 是否执行通知
     "executeNotify" => 0,
     // 请求时间

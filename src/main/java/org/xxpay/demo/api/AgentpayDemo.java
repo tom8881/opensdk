@@ -17,26 +17,26 @@ public class AgentpayDemo extends BaseSdk {
     /**
      * 商户ID
      */
-    static final String mchId = "200000043";
+    static final String mchId = "20000012";
     /**
      * 私钥
      */
-    static final String key = "KMAX5E54DCOASXSQTP5VYGKNB4TENCNQW5D6MX2OPUDY3XNLVLWI8BENOIK0QVMTFSS5PMH6NXUFG5EK3RJRBRO0T7XWOBC48I1KLQWZGO1PJJWFMBMW1QHUTO8CXGLY";
+    static final String key = "Z6LVILIGK3HCUCF7CJKHDDQF12DKUM9L2K19DJBNLFYKAZPHYTQSJJTRSC3RXZWHSX7SAEYFQF1D4PL6JRQSWAQZHEIMAYVJQPFOFQT8SKAHZQAILKYB9Q0VF3YABQYC";
 
     /**
      * 支付路径
      */
-    static final String payUrl = "https://api.madaofu.com/api";
+    static final String payUrl = "http://localhost:8080/api";
 
     /**
      * 本地环境测试,可到ngrok.cc网站注册
      */
-    static final String notifyUrl = "http://localhost:8082/callback";
+    static final String notifyUrl = "http://localhost:8080/callback";
 
     public static void main(String[] args) {
-        //applyAgentpayTest();
+        applyAgentpayTest();
         //quryAgentpayTest("", "AP1561746502431");
-        quryBalanceTest();
+        //quryBalanceTest();
     }
 
     /**
@@ -50,8 +50,6 @@ public class AgentpayDemo extends BaseSdk {
         paramMap.put("mchId", mchId);
         // 商户代付单号
         paramMap.put("mchOrderNo", "AP" + System.currentTimeMillis());
-        // 代付金额,单位分
-        paramMap.put("amount", 119);
         // 账户属性:0-对私,1-对公,默认对私
         paramMap.put("accountAttr", 0);
         // 收款人账户名
@@ -78,6 +76,8 @@ public class AgentpayDemo extends BaseSdk {
         paramMap.put("uid", 123455555);
         //用户ip
         paramMap.put("cip", "11.23.44.23");
+        // 代付金额,单位分
+        paramMap.put("amount", 20000);
         String reqSign = PayDigestUtil.getSign(paramMap, key);
         // 签名
         paramMap.put("sign", reqSign);
